@@ -87,22 +87,34 @@ limit 10;
 
 
 
---5. Mostrar los datos del numero de telefono, para los siguientes pacientes.
---Filtrar por el campo numero_documento.
-
+-- 5. Mostrar los datos del numero de telefono, 
+-- para los siguientes pacientes.
+-- Filtrar por el campo numero_documento.
+-- JSON
 SELECT
-  ph.phone_number,
-FROM smart_health.patients p
-JOIN smart_health.patient_phones ph
-  ON p.patient_id = ph.patient_id
-WHERE p.document_number IN (
-  '30451580',
-  '1006631391',
-  '1009149871',
-  '1298083',
-  '1004928596',
-  '1008188849',
-  '1607132',
-  '30470003'
+    patient_id,
+    phone_type,
+    phone_number
+FROM smart_health.patient_phones
+WHERE patient_id IN 
+(
+    SELECT patient_id FROM smart_health.patients
+    WHERE document_number IN ('30451580',
+'1006631391',
+'1009149871',
+'1298083',
+'1004928596',
+'1008188849',
+'1607132',
+'30470003')
 );
 
+--  patient_id | phone_type | phone_number
+-- ----------+------------+--------------
+--       11118 | Móvil      | 3117935551
+--         855 | Móvil      | 3014649922
+--       15919 | Móvil      | 3201212554
+--       11188 | Móvil      | 3149662006
+--        7453 | Fijo       | 6043698899
+--       14125 | Móvil      | 3185171082
+-- (6 filas)

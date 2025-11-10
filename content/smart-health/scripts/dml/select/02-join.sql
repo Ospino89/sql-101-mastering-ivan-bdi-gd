@@ -237,7 +237,7 @@ ON D.document_type_id = P.document_type_id
 --2. Listar los nombres de los municipios y las direcciones registradas en cada uno,
 -- de manera que se muestren todos los municipios , incluso los que no tengan direcciones asociadas.
 
--- LEFT JOIN 
+-- LEFT JOIN  
 
 
 --smart_health.municipalities:municipality_code(PK) 
